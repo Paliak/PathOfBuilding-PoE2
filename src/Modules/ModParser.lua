@@ -3038,6 +3038,8 @@ local specialModList = {
 	-- Skill modifiers
 	["([%+%-]%d+)%% to quality of all skills"] = function(num) return { mod("GemProperty", "LIST", { keyword = "grants_active_skill", key = "quality", value = num, keyOfScaledMod = "value"  }) } end,
 	["([%+%-]%d+)%%? to (%a+) of all ?([%a%-' ]*) skills? ?w?i?t?h? ?a?n? ?(%a+) ?r?e?q?u?i?r?e?m?e?n?t?"] = function(num, _, property, type, gemReq)
+		if type == "" then type = "all" end
+
 		local gemReqType
 		if gemReq == "intelligence" then
 			gemReqType = "reqInt"
